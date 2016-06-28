@@ -1,0 +1,39 @@
+<md-toolbar class="navbar">
+  <div class="md-toolbar-tools">
+    <img ng-if="$ctrl.$state.current.name == 'home'" src="/assets/img/leopoll.png">
+    <md-button ng-if="$ctrl.$state.current.name != 'home'" class="md-icon-button" ui-sref="home"><md-icon md-font-set="material-icons">arrow_back</md-icon></md-button>
+    <h2>
+      <span ng-if="$ctrl.$state.current.name == 'home'">Leopoll</span>
+      <span ng-if="$ctrl.$state.current.name != 'home'">{{$ctrl.pollName || 'Poll Name'}}</span>
+    </h2>
+    <form class="search-form" ng-if="$ctrl.$state.current.name == 'home'">
+      <input ng-model="$ctrl.searchWord" placeholder="Search">
+      <md-button class="md-icon-button"><md-icon md-font-set="material-icons">search</md-icon></md-button>
+      <div class="bg-mask"></div>
+    </form>
+    <span flex></span>
+    <md-menu>
+      <md-button class="avatar" class="md-icon-button" ng-click="$ctrl.openMenu($mdOpenMenu, $event)">
+        <img src="{{$ctrl.user.avatar}}">
+      </md-button>
+      <md-menu-content width="4">
+        <md-card>
+          <md-card-title>
+            <md-card-title-media>
+              <div class="md-media-sm card-media" layout>
+                <img src="{{$ctrl.user.avatar}}">
+              </div>
+            </md-card-title-media>
+            <md-card-title-text>
+              <span class="md-headline">{{$ctrl.user.name}}</span>
+              <span class="md-subhead description"><a class="log-out" ng-click="$ctrl.signOut()"><md-icon md-font-set="material-icons">input</md-icon>Sign out</a></span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card>
+      </md-menu-content>
+    </md-menu>
+    <div class="create-poll" ng-if="$ctrl.$state.current.name == 'home'">
+      <md-button class="md-fab" ui-sref="create({ length: $ctrl.dataLength })"><md-icon md-font-set="material-icons">add</md-icon></md-button>
+    </div>
+  </div>
+</md-toolbar>

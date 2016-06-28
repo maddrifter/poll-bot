@@ -1,0 +1,213 @@
+.draggable-icon
+  cursor: move
+  width: 24px
+  height: 24px
+  overflow: hidden
+  display: none
+  position: relative
+  text-align: left
+  .icon-content
+    position: absolute
+    left: 0
+    top: -1536px
+    &:before
+      content: url(//ssl.gstatic.com/docs/forms/qp_sprite71.svg)
+      opacity: .3
+  &.rotated
+    -webkit-transform: rotate(90deg)
+    -moz-transform: rotate(90deg)
+    -ms-transform: rotate(90deg)
+    transform: rotate(90deg)
+.create-container.md-padding
+  min-height: -webkit-calc(100vh - 144px)
+  min-height: -moz-calc(100vh - 144px)
+  min-height: -ms-calc(100vh - 144px)
+  min-height: calc(100vh - 144px)
+  padding-top: 80px
+  overflow-x: hidden
+  > h1
+    text-align: center
+    font-size: 30px
+  .create-poll
+    width: 770px
+    max-width: -webkit-calc(100vw - 20px)
+    max-width: -moz-calc(100vw - 20px)
+    max-width: -ms-calc(100vw - 20px)
+    max-width: calc(100vw - 20px)
+    margin: auto
+    > ul
+      margin: 0
+      padding-left: 0
+      list-style: none
+      > li
+        padding: 20px 30px
+        outline: 0
+        .dummy-text
+          font-style: italic
+          color: #777
+        &:not(.active)
+          input.md-input
+            border-color: transparent
+          md-chips-wrap.md-chips
+            box-shadow: 0 0
+          .selection-type,
+          .draggable-icon,
+          .delete-option,
+          .add-new,
+          md-radio-group md-radio-button:not(.md-checked),
+          md-radio-group md-radio-button .md-container,
+          #datetime[disabled="disabled"],
+          .attach-image
+            display: none !important
+          md-radio-group md-radio-button .md-label
+            margin-left: 8px
+        &.active, &.item:active
+          border-left: 3px solid #4d90fe
+          -webkit-box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3)
+          box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3)
+          > .draggable-icon
+            display: inline-block
+            margin-top: -20px
+          > .delete-query
+            display: block
+        .header
+          width: 100%
+          .poll-name
+            font-size: 28px
+            margin-bottom: 14px
+            display: inline-table
+            width: 100%
+            input
+              box-sizing: content-box
+              padding-bottom: 5px
+            .md-errors-spacer
+              min-height: 0
+          .description
+            width: 100%
+            font-size: 16px;
+            margin-bottom: 0
+          .send-to
+            display: inline-table
+            width: 100%
+            margin-top: 0
+          .send-time
+            margin: -45px 0 0 100px
+            display: inline-table
+        .multiple
+          width: 100%
+          .question
+            font-size: 20px
+            margin-bottom: 0
+          .selection-type
+            background: gainsboro
+            padding: 0 10px
+            border-radius: 5px
+            height: 40px
+            margin-top: 10px
+            margin-left: 10px
+          .editable
+            > ul
+              padding-left: 0
+              list-style: none
+              > li.option
+                position: relative
+                padding-left: 30px
+                &:hover
+                  .draggable-icon
+                    display: inline-block
+                .draggable-icon
+                  position: absolute
+                  left: -20px
+                  top: 5px
+                .count
+                  position: absolute
+                  top: 9px
+                  left: 10px
+                .option-name
+                  margin: 0
+                  md-icon
+                    cursor: pointer
+                &.add-new a
+                  color: #aaaaaa
+                  line-height: 2.2
+                  cursor: pointer
+        .short-answer
+          width: 100%
+          .question
+            font-size: 20px
+            margin-bottom: 0
+          .selection-type
+            background: gainsboro
+            padding: 0 10px
+            border-radius: 5px
+            height: 40px
+            margin-top: 10px
+            margin-left: 10px
+          .editable
+            .short-answer-text
+              margin: 0
+        .attachment
+          width: 100%
+          .question
+            font-size: 20px
+            margin-bottom: 0
+          .selection-type
+            background: gainsboro
+            padding: 0 10px
+            border-radius: 5px
+            height: 40px
+            margin-top: 10px
+            margin-left: 10px
+          .attach-image
+            min-width: 0
+            min-height: 0
+            height: 30px
+            line-height: 30px
+            text-transform: none
+            input[type="file"]
+              position: absolute
+              top: 0
+              bottom: 0
+              left: 0
+              right: 0
+              opacity: 0
+        .delete-query
+          width: 100%
+          text-align: right
+          display: none
+          md-icon
+            cursor: pointer
+    .footer
+      padding: 10px
+  > p
+    font-size: 14px
+    margin-top: 30px
+    md-input-container
+      margin: -10px 0 0 10px
+      .md-errors-spacer
+        min-height: 0
+  md-card
+    md-card-content
+      p
+        font-size: 14px
+        margin-bottom: 0
+        > md-input-container
+          margin: -10px 0 0 10px
+          .md-errors-spacer
+            min-height: 0
+        > span
+          margin-left: 10px
+        &.second-layout
+          margin-left: 50px
+      .md-button.add-question
+        width: 150px
+        text-transform: capitalize
+    md-card-actions
+      .add-question
+        text-transform: none
+      .md-button.submit-poll
+        text-transform: capitalize
+        padding: 0 10px
+      section
+        @media screen and (max-width: 599px)
+          margin-top: 10px

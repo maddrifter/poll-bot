@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "polls": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "answers": {
+      "$poll_id": {
+        ".read": "root.child('polls/'+auth.uid+'/'+$poll_id).exists()",
+        ".write": "root.child('polls/'+auth.uid+'/'+$poll_id).exists()"
+      }
+    },
+    "recipients": {
+      "$poll_id": {
+        ".read": "root.child('polls/'+auth.uid+'/'+$poll_id).exists()",
+        ".write": "root.child('polls/'+auth.uid+'/'+$poll_id).exists()"
+      }
+    }
+  }
+}

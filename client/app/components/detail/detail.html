@@ -1,0 +1,70 @@
+<navbar poll-name="$ctrl.pollInfo.name"></navbar>
+<md-content class="md-padding detail-container" layout="column">
+  <!-- <h2>{{$ctrl.pollInfo.name}}</h2> -->
+  <md-card class="poll-detail">
+    <md-card-content layout="column">
+      <h1 class="poll-name">{{$ctrl.pollInfo.name}}</h1>
+      <p class="description">{{$ctrl.pollInfo.description || 'Some description here'}}</p>
+      <md-chips ng-model="$ctrl.chip.data" readonly="$ctrl.chip.readonly" md-removable="$ctrl.chip.removable">
+        <md-chip-template>
+          <strong>{{$chip}}</strong>
+        </md-chip-template>
+      </md-chips>
+      <p layout="row">
+        <span class="send-date">
+          <md-icon md-font-set="material-icons">event</md-icon>&nbsp;{{$ctrl.pollInfo.sendOnString}} <span class="status">({{$ctrl.pollInfo.status}})</span>
+        </span>
+        <span flex></span>
+        <span class="completed-percent">{{$ctrl.pollInfo.completedUsers}}/{{$ctrl.pollInfo.totalUsers}}</span>
+      </p>
+      <div>
+        <md-progress-linear md-mode="determinate" value="{{$ctrl.pollInfo.completedUsers/$ctrl.pollInfo.totalUsers*100}}"></md-progress-linear>
+        <md-tooltip>{{ $ctrl.pollInfo.completedUsers/$ctrl.pollInfo.totalUsers*100 | number: 0 }}% Completed!</md-tooltip>
+      </div>
+      <section>
+        <div ng-repeat="(index, question) in $ctrl.pollInfo.questions">
+          <md-subheader class="md-primary">{{ (index + 1) + '. ' + question.question }}<span class="question-type">{{ $ctrl.getDisplayQueryType(question.type) }}</span></md-subheader>
+          <md-divider></md-divider>
+          <div class="multiple" layout="row" layout="space-between center" ng-if="question.type == 'multiple_choice'">
+            <div class="accordion">
+              <md-list ng-cloak>
+                <div ng-repeat="(key, option) in question.options">
+                  <md-subheader class="md-no-sticky"><md-button class="md-raised first" ng-style="{'background-color':$ctrl.colors[key]}" ng-click="$ctrl.isOpen[key] = !$ctrl.isOpen[key]"><md-icon md-font-set="material-icons">{{ $ctrl.isOpen[key]? 'remove' : 'add' }}</md-icon></md-button>&nbsp;{{option}}</md-subheader>
+                  <md-list-item ng-if="$ctrl.isOpen[key]" ng-repeat="user in $ctrl.userOps[key]">
+                    <p>{{user}}</p>
+                  </md-list-item>
+                </div>
+              </md-list>
+            </div>
+            <span flex></span>
+            <div class="chart-layout" flex="30">
+              <canvas id="pie-chart-{{index}}"></canvas>
+            </div>
+          </div>
+          <div class="short-answer" ng-if="question.type == 'short_answer'">
+            <md-list>
+              <md-list-item layout="column" ng-repeat="answer in $ctrl.answers">
+                <p>{{answer['question-' + index]}}</p>
+                <h3>{{answer.name}}</h3>
+              </md-list-item>
+            </md-list>
+          </div>
+          <div class="attachment" ng-if="question.type == 'attachment'">
+            <md-list>
+              <md-list-item ng-repeat="answer in $ctrl.answers">
+                <md-icon class="photo" md-font-set="material-icons">photo</md-icon>
+                <span>{{answer.name}}</span>
+                <md-button class="open-new md-icon-button" ng-href="{{answer['question-' + (index + 1)]}}" target="_blank"><md-icon md-font-set="material-icons">open_in_new</md-icon></md-button>
+              </md-list-item>
+            </md-list>
+          </div>
+        </div>
+      </section>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-card-actions layout="row" layout-align="end">
+      <md-button ng-if="$ctrl.pollInfo.status === 'in-progress'" class="md-raised md-primary end-poll" ng-click="$ctrl.endPoll()">End Poll</md-button>
+    </md-card-actions>
+  </md-card>
+</md-content>
+<footer></footer>

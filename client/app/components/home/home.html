@@ -1,0 +1,48 @@
+<navbar></navbar>
+<md-content class="md-padding home-container" layout="column">
+  <div class="no-poll" ng-if="!$ctrl.data || $ctrl.data.length == 0">
+    <h1>Create your first poll</h1>
+    <img src="assets/img/arrow.png">
+  </div>
+  <md-list class="poll-list" ng-if="$ctrl.data.length > 0">
+    <md-card>
+      <md-subheader class="header">Continue editing</md-subheader>
+      <md-list-item ng-if="($ctrl.data | filter:$ctrl.editable).length == 0">There is no draft poll.</md-list-item>
+      <md-list-item class="item editable" ng-repeat="poll in $ctrl.data | filter:$ctrl.editable" ng-class="{'last-item': $last}" ui-sref="edit({ id: poll.id })">
+        <p>{{ poll.name }}</p>
+        <span class="no-progress md-secondary">{{ $ctrl.momentDate(poll) }}</span>
+      </md-list-item>
+    </md-card>
+    <md-card>
+      <md-subheader class="header">Active</md-subheader>
+      <md-list-item ng-if="($ctrl.data | filter: $ctrl.active).length == 0">There is no active poll.</md-list-item>
+      <md-list-item class="item" ng-repeat="poll in $ctrl.data | filter: $ctrl.active" ng-class="{'last-item': $last}" ui-sref="detail({ id: poll.id })" layout="row" layout-xs="column" layout-align-xs="center center">
+        <div class="content" layout="row">
+          <p class="poll-name">{{ poll.name }}</p>
+          <span class="md-secondary">{{ $ctrl.momentDate(poll) }}</span>
+        </div>
+        <div class="completed-progress" layout="row">
+          <md-progress-linear class="full-bar" md-mode="determinate" value="{{poll.completedUsers / poll.totalUsers * 100}}"></md-progress-linear>
+          <md-tooltip>{{ poll.completedUsers / poll.totalUsers * 100 | number: 0 }}% Completed!</md-tooltip>
+          <div class="progress-text">&nbsp;{{ poll.completedUsers }}/{{poll.totalUsers}}</div>
+        </div>
+      </md-list-item>
+    </md-card>
+    <md-card>
+      <md-subheader class="header">Completed</md-subheader>
+      <md-list-item ng-if="($ctrl.data | filter: $ctrl.completed).length == 0">There is no completed or cancelled poll.</md-list-item>
+      <md-list-item class="item" ng-repeat="poll in $ctrl.data | filter: $ctrl.completed" ng-class="{'last-item': $last}" layout="row" ui-sref="detail({ id: poll.id })"  layout-xs="column" layout-align-xs="center center">
+        <div class="content" layout="row">
+          <p class="poll-name">{{ poll.name }}</p>
+          <span class="md-secondary" ng-class="{'cancelled': poll.status == 'Cancelled', 'completed': poll.status == 'Completed'}">{{ $ctrl.momentDate(poll) }}</span>
+        </div>
+        <div class="completed-progress" layout="row">
+          <md-progress-linear class="full-bar" md-mode="determinate" value="{{poll.completedUsers / poll.totalUsers * 100}}"></md-progress-linear>
+          <md-tooltip>{{ poll.completedUsers / poll.totalUsers * 100 | number: 0 }}% Completed!</md-tooltip>
+          <div class="progress-text">&nbsp;{{ poll.completedUsers }}/{{poll.totalUsers}}</div>
+        </div>
+      </md-list-item>
+    </md-card>
+  </md-list>
+</md-content>
+<footer></footer>

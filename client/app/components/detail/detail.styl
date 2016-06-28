@@ -1,0 +1,112 @@
+.detail-container.md-padding
+  min-height: -webkit-calc(100vh - 48px)
+  min-height: -moz-calc(100vh - 48px)
+  min-height: -ms-calc(100vh - 48px)
+  min-height: calc(100vh - 48px)
+  padding-top: 80px
+  md-card
+    width: 770px
+    margin: 0 auto
+    max-width: -webkit-calc(100vw - 20px)
+    max-width: -moz-calc(100vw - 20px)
+    max-width: -ms-calc(100vw - 20px)
+    max-width: calc(100vw - 20px)
+    md-card-content
+      .poll-name
+        margin-bottom: 0
+      .send-date
+        .status
+          color: #777
+      section
+        margin-top: 20px
+        .md-subheader
+          background-color: white
+          color: #333
+          .md-subheader-inner
+            padding: 16px 0
+            .md-subheader-content
+              display: -webkit-flex
+              display: flex
+              -webkit-justify-content: space-between
+              justify-content: space-between
+              span:first-child
+                margin-left: 0
+                font-size: 16px
+              .question-type
+                font-style: italic
+                color: #777
+        .multiple
+          margin-bottom: 20px
+          .accordion
+            md-list
+              .md-subheader
+                .md-subheader-inner
+                  .md-subheader-content
+                    -webkit-justify-content: flex-start
+                    justify-content: flex-start
+                    .md-button
+                      min-width: 0
+                      min-height: 0
+                      width: 25px
+                      height: 25px
+                      position: relative
+                      color: white
+                      margin: 0
+                      md-icon
+                        width: 30px
+                        height: 30px
+                        font-size: 30px
+                        position: absolute
+                        top: -2px
+                        left: -2px
+                        color: white  
+                    span
+                      -webkit-align-items: center
+                      display: -webkit-flex
+                      align-items: center
+                      display: flex
+                      margin-left: 10px
+              md-list-item
+                margin-left: 20px
+                min-height: 25px
+                height: 25px
+                color: #777
+          .chart-layout
+            margin-top: 20px
+        .short-answer
+          padding: 10px 0
+          md-list
+            md-list-item
+              padding: 0
+              line-height: 1.5
+              h3
+                width: 100%
+                color: #777
+              &:before
+                min-height: 0
+        .attachment
+          md-list
+            md-list-item
+              md-icon
+                margin: 0 10px 0 0
+                &.text
+                  color: rgb(67,132,244)
+                &.sheet
+                  color: rgb(13,157,88)
+              .open-new
+                display: none
+              .md-list-item-inner
+                display: block
+              &:hover
+                .open-new
+                  display: block
+                  md-icon
+                    color: rgb(74,144,226)
+                span
+                  color: rgb(89,162,231)
+    md-card-actions
+      .md-button.end-poll
+        background-color: #8d0011
+        &:hover
+          background-color: #9e1122 !important
+
